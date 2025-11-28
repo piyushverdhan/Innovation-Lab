@@ -1,0 +1,49 @@
+{
+  "name": "sangha-innovation-tank",
+  "version": "1.0.0",
+  "description": "AI Solutions for District Health Transformation - Four interactive dashboards for district-level health system automation",
+  "main": "index.html",
+  "author": "Sangha Innovation Tank | Piramal Swasthya & Digital Bharat Collaborative",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/sangha-innovation-tank",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/sangha-innovation-tank.git"
+  },
+  "keywords": [
+    "health",
+    "district",
+    "AI",
+    "dashboard",
+    "healthcare",
+    "India",
+    "innovation",
+    "AMRIT",
+    "ABDM"
+  ],
+  "scripts": {
+    "start": "http-server -p 3000 -c-1",
+    "dev": "http-server -p 3000 -c-1 -o",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "npm run build && gh-pages -d .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint dashboards/*/script.js assets/js/*.js",
+    "serve": "python -m http.server 3000"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "http-server": "^14.1.1",
+    "jest": "^29.5.0",
+    "eslint": "^8.40.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

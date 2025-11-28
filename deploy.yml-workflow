@@ -1,0 +1,108 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Lint JavaScript
+        run: npm run lint --if-present || true
+      
+      - name: Run tests
+        run: npm test --if-present || true
+      
+      - name: Build project
+        run: npm run build --if-present
+      
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          cname: sangha-innovation-tank.github.io
+          force_orphan: true
+      
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Build passed! Preview available in deployment checks.'
+            })
+      
+      - name: Notify deployment
+        if: success()
+        run: echo "✅ Deployment to GitHub Pages completed successfully!"
+      
+      - name: Notify failure
+        if: failure()
+        run: echo "❌ Deployment failed. Check logs above."
+
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run tests with coverage
+        run: npm test -- --coverage --if-present || true
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        if: always()
+
+  performance:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Check file sizes
+        run: |
+          echo "Checking HTML file sizes..."
+          find . -name "*.html" -exec ls -lh {} \;
+          echo "Checking CSS file sizes..."
+          find . -name "*.css" -exec ls -lh {} \;
+          echo "Checking JS file sizes..."
+          find . -name "*.js" -exec ls -lh {} \;

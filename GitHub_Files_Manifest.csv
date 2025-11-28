@@ -1,0 +1,20 @@
+File,Type,Purpose,Status
+README.md,Documentation,Project overview and quick start,✅ Complete
+.gitignore,Configuration,Git exclusions,✅ Complete
+package.json,Configuration,Node.js dependencies,✅ Complete
+requirements.txt,Configuration,Python dependencies,✅ Complete
+LICENSE,Legal,MIT License,✅ Complete
+Dockerfile,Configuration,Docker setup,✅ Ready
+CONTRIBUTING.md,Documentation,Contribution guidelines,✅ Ready
+CODE_OF_CONDUCT.md,Documentation,Community guidelines,✅ Ready
+index.html,HTML,Landing/portal page,✅ Complete
+dashboards/dpm-campaign/*,Dashboard,DPM Campaign Manager,✅ Live
+dashboards/data-reporting/*,Dashboard,Data Reporting Agent,✅ Live
+dashboards/digipanjiyan/*,Dashboard,DigiPanjiyan Registration,✅ Live
+dashboards/saarthi/*,Dashboard,SAARTHI Intelligence,✅ Live
+backend/app.py,Backend,Flask application,✅ Ready
+backend/routes.py,Backend,API endpoints,✅ Ready
+assets/css/*.css,CSS,Design system & responsive,✅ Ready
+assets/js/*.js,JavaScript,Utilities & components,✅ Ready
+docs/*,Documentation,"Setup, architecture, API",✅ Ready
+.github/workflows/deploy.yml,CI/CD,Automated deployment,✅ Ready
