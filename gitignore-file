@@ -1,43 +1,48 @@
+# Dependencies
 node_modules/
 __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Environment
 .env
 .venv
 venv/
+
+# Python
 *.pyc
 *.pyo
 *.pyd
 .Python
+
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Logs
 *.log
 npm-debug.log
+
+# Testing
 coverage/
 .pytest_cache/
 .coverage
 htmlcov/
-.pytest_cache/
+
+# Databases
 *.db
 *.sqlite
-.env.local
-.env.*.local
+
+# Frontend builds
 out/
 .next/
 static/
 public/
 !public/.gitkeep
-.firebase/
-.firebaserc
-firebase-debug.log
-.vercel/
-.serverless/
-node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
